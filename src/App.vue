@@ -18,7 +18,7 @@ const stack = computed(() => {
     <router-view class="p-24"></router-view>
     <footer>
         <p class="text-gray-400 text-xs text-center">
-            <a class="flex items-center justify-center text-base font-medium text-black" href="https://github.com/richardevcom/vite-vuex-tailwind"><GithubSVG class="w-5 mr-1" />richardev</a>
+            <a class="flex items-center justify-center text-base font-medium text-black" href="https://github.com/"><GithubSVG class="w-5 mr-1" />Footer</a>
         </p>
     </footer>
 </template>

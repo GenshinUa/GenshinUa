@@ -1,3 +1,46 @@
 <template>
-    <img class="mx-auto" alt="Vue logo" src="../assets/boilerplate.png" />
+    <div v-if="isFetching">Fetching...</div>
+    <div v-else>
+        <article v-for="item in data" :key="item.id">
+        <div>Title: {{ item.attributes.Title }}</div>
+        <br>
+        <div v-html="unescapeHtml(item.attributes.Content)"></div>
+        </article>
+    </div>
 </template>
+
+<script lang="ts">
+import { defineComponent, ref } from 'vue'
+import api from '../api/client';
+
+export default defineComponent({
+    setup() {
+        const isFetching = ref(true);
+        const data = ref([]);
+
+        return {
+            isFetching,
+            data,
+        }
+    },
+    async created() {
+        this.isFetching = true;
+        await api.get("/posts").then((data) => {
+            console.log(data.data.data)
+            this.data.push(...data.data.data);
+            console.log(this.data)
+            this.isFetching = false;
+        });
+    },
+    methods: {
+        unescapeHtml(unsafe) {
+            return unsafe
+                .replace(/&amp;/g, "&")
+                .replace(/&lt;/g, "<")
+                .replace(/&gt;/g, ">")
+                .replace(/&quot;/g, "\"")
+                .replace(/&#039;/g, "'");
+        },
+    }
+})
+</script>
