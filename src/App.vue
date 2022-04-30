@@ -24,9 +24,9 @@ const stack = computed(() => {
 </template>
 
 <style lang="scss">
-#app {
+/*#app {
     @apply h-screen bg-gray-50;
-}
+}*/
 
 nav {
     a.active {

@@ -1,11 +1,11 @@
 <template>
     <div v-if="isFetching">Fetching...</div>
-    <div v-else>
-        <article v-for="item in data" :key="item.id">
-        <div>Title: {{ item.attributes.Title }}</div>
-        <br>
-        <div v-html="unescapeHtml(item.attributes.Content)"></div>
-        </article>
+    <div v-else class="articles-list">
+        <div v-for="item in data" :key="item.id" class="article">
+            <!--<article v-for="item in data" :key="item.id" class="article">
+            </article>-->
+            <router-link :to="'/article/' + item.id">{{item.attributes.Title}}</router-link>
+        </div>
     </div>
 </template>
 
@@ -44,3 +44,10 @@ export default defineComponent({
     }
 })
 </script>
+
+<style lang="scss" scoped>
+.delimiter {
+    height: 20px;
+    border-color: red;
+}
+</style>
