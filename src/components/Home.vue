@@ -29,7 +29,7 @@ export default defineComponent({
     },
     async created() {
         this.isFetching = true;
-        await api.get("/posts").then((data) => {
+        await api.get("/posts?populate=Hero").then((data) => {
             console.log(data.data.data)
             this.data.push(...data.data.data);
             console.log(this.data)

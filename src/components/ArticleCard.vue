@@ -1,7 +1,9 @@
 <template>
   <div class="article-card">
     <router-link :to="'/article/' + article.id" class="card">
-      <div class="thumb" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/flex-1.jpg);"></div>
+      <div class="thumb" :style="{
+        'background-image': `url(https://genshin.forevka.dev/${article.attributes.Hero.data.attributes.formats.large.url})`,
+      }"></div>
       <article>
         <h1>{{article.attributes.Title}}</h1>
         <span>{{new Date(article.attributes.publishedAt).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric", hour: "numeric", minute: "numeric"}) }}</span>
