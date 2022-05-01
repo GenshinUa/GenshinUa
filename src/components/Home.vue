@@ -4,7 +4,7 @@
         <div v-for="item in data" :key="item.id" class="article">
             <!--<article v-for="item in data" :key="item.id" class="article">
             </article>-->
-            <router-link :to="'/article/' + item.id">{{item.attributes.Title}}</router-link>
+            <ArticleCard :article="item"/>
         </div>
     </div>
 </template>
@@ -12,8 +12,12 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import api from '../api/client';
+import ArticleCard from './ArticleCard.vue';
 
 export default defineComponent({
+    components: {
+        ArticleCard,
+    },
     setup() {
         const isFetching = ref(true);
         const data = ref([]);
@@ -46,8 +50,23 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.delimiter {
-    height: 20px;
-    border-color: red;
+.articles-list {
+  width: 90%;
+  max-width: 1240px;
+  margin: 0 auto;
+  
+  display: grid;
+  
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  grid-gap: 20px;
+  
+  @media (min-width: 30em) {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  @media (min-width: 60em) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 </style>
